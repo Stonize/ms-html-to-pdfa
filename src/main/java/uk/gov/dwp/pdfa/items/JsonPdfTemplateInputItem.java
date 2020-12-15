@@ -18,16 +18,12 @@ import java.util.Map;
 
 public class JsonPdfTemplateInputItem {
 
-  // @JsonProperty("font_map")
   private Map<String, String> fontMap;
 
-  // @JsonProperty("colour_profile")
   private String colourProfile;
 
-  // @JsonProperty("page_html")
   private String htmlDocument;
 
-  // @JsonProperty("conformance_level")
   private String conformanceLevel;
 
   private JsonNode inputs;
@@ -55,29 +51,6 @@ public class JsonPdfTemplateInputItem {
   public void setInputs(JsonNode inputs) {
     this.inputs = inputs;
   }
-
-  /*
-  private String getOrNull(JsonNode jsonNode, String key) {
-    JsonNode node = jsonNode.get(key);
-    if (node == null) {
-      return null;
-    }
-    return node.toString();
-  }
-
-  public JsonPdfTemplateInputItem(String json) throws JsonProcessingException {
-    ObjectMapper mapper = new ObjectMapper();
-    JsonNode jsonNode = mapper.readValue(json, JsonNode.class);
-    JsonNode fontMap = jsonNode.get("font_map");
-    if (fontMap != null) {
-      this.fontMap = mapper.convertValue(fontMap, Map.class);
-    }
-    this.colourProfile = getOrNull(jsonNode, "colour_profile");
-    this.htmlDocument = getOrNull(jsonNode, "page_html");
-    this.conformanceLevel = getOrNull(jsonNode, "conformance_level");
-    this.inputs = jsonNode.get("inputs");
-  }
-   */
 
   public JsonNode getInputs() {
     return inputs;
@@ -115,21 +88,6 @@ public class JsonPdfTemplateInputItem {
 
     return colour;
   }
-
-  /*
-  public String getHtmlDocument() throws PdfaGeneratorException {
-    String html;
-    try {
-      ClassLoader classLoader = getClass().getClassLoader();
-      URL resource = classLoader.getResource("templates/" + htmlDocument + ".html");
-      html = htmlDocument != null ? Files.readString(Paths.get(resource.toURI())) : null;
-    } catch (IllegalArgumentException | URISyntaxException | IOException e) {
-      throw new PdfaGeneratorException(
-          String.format("'page_html' element is malformed :: %s", e.getMessage()));
-    }
-    return html;
-  }
-  */
 
   public String getConformanceLevel() {
     return this.conformanceLevel;

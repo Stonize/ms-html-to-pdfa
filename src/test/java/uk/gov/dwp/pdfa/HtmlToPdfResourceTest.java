@@ -149,7 +149,7 @@ public class HtmlToPdfResourceTest {
     assertThat(
         conformanceLevelCapture.getValue().toString(), is(equalTo(item.getConformanceLevel())));
 
-    assertThat(fontMapCapture.getValue().size(), is(equalTo(2)));
+    assertThat(fontMapCapture.getValue().size(), is(equalTo(4)));
     assertTrue(fontMapCapture.getValue().containsKey("arial"));
   }
 
@@ -174,7 +174,7 @@ public class HtmlToPdfResourceTest {
     assertThat(
             conformanceLevelCapture.getValue().toString(), is(equalTo(item.getConformanceLevel())));
 
-    assertThat(fontMapCapture.getValue().size(), is(equalTo(2)));
+    assertThat(fontMapCapture.getValue().size(), is(equalTo(4)));
     assertTrue(fontMapCapture.getValue().containsKey("arial"));
   }
 }

@@ -2,6 +2,7 @@ package uk.gov.dwp.pdfa.template;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import freemarker.template.*;
+import org.apache.commons.text.StringEscapeUtils;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -24,8 +25,14 @@ public class TemplateEngine {
         // Generate the output
         StringWriter writer = new StringWriter();
         fmTemplate.process(null, writer);
-        return writer.toString();
+        String output = writer.toString();
 
+        output = StringEscapeUtils.unescapeHtml4(output);
+
+        // output = output.replaceAll("font-family:\"Georgia\"", "font-family:\"arial\"");
+        output = output.replaceAll("font-family:\"Arial\"", "font-family:\"arial\"");
+
+        return output;
     }
 
 }

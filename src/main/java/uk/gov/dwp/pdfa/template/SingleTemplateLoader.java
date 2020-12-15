@@ -42,7 +42,7 @@ public class SingleTemplateLoader implements TemplateLoader {
     public Reader getReader(Object o, java.lang.String s) throws IOException {
         StringBuilder buffer = new StringBuilder();
         if (this.json != null) {
-            buffer.append("<#assign input = ");
+            buffer.append("<#assign inputs = ");
             buffer.append(this.json.toString());
             buffer.append(">\n");
         }

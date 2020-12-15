@@ -1,0 +1,168 @@
+<!--
+Input Definition:
+
+transferor: {
+    businessName:               Fiat
+    legalForm:                  società per azioni
+    address:                    Via Tagliamento, 1 00100, Roma
+    taxCode:                    CFSLCA00000
+    vat:                        123129382942
+}
+
+transferee: {
+    vehicleNumber:              35551.1
+    acquisitionStructure:       Comparto 1
+
+    businessName:               ROSSETTI SPA
+    legalForm:                  società a responsabilità limitata unipersonale
+    address:                    Via Tagliamento, 1 00100, Roma
+    taxCode:                    CFSLCA00000
+    vat:                        123129382942
+}
+
+-->
+
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+
+    <style>
+            pre, code, var {
+                font-family: 'courier', serif;
+            }
+            body {
+                font-family: 'arial', serif;
+                font-size: 12px;
+            }
+            img {
+                image-rendering: pixelated;
+            }
+            table {
+                border: 1px solid black;
+            }
+
+            table {
+                page-break-after:auto;
+            }
+
+            tr {
+                page-break-inside:avoid;
+                page-break-after:auto ;
+               }
+
+            td {
+                page-break-inside:avoid;
+                page-break-after:auto;
+            }
+
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+            }
+
+            table thead tr {
+                width: 100%;
+                background-color: #dddddd;
+            }
+
+            td, th {
+              text-align: left;
+              padding: 8px;
+            }
+    </style>
+</head>
+<body>
+<h1>ALLEGATO A - PROSPETTO CREDITI IN CESSIONE</h1>
+
+<p>
+    <#assign tr=inputs.transferor>
+    (1) ${tr.businessName}, una ${tr.legalForm} con sede legale in ${tr.address}, codice fiscale ${tr.taxCode},
+    partita IVA ed iscrizione al Registro delle Imprese
+    di Roma n. ${tr.vatNumber}, che qui interviene in qualità di cedente dei Crediti (come di seguito definiti)
+    (di seguito, il “Cedente”);
+</p>
+<p>
+<center>e</center>
+</p>
+<p>
+    <#assign tf=inputs.transferee>
+    (2) ${tf.businessName}, ${tf.legalForm} costituita in Italia ai sensi della legge 30 aprile
+    1999, n. 130 (la "Legge sulla Cartolarizzazione"), con sede legale in in ${tf.address}, Italia,
+    Codice Fiscale e iscrizione al Registro delle Imprese di Milano n. ${tf.vatNumber}, iscritta al n. ${tf.vehicleNumber}
+    dell'elenco delle società veicolo tenuto dalla Banca d'Italia ai sensi dell'articolo 4 del provvedimento della
+    Banca d'Italia del 7 giugno 2017, che qui interviene come cessionario dei Crediti nell'ambito del proprio
+    “${tf.acquisitionStructure}” denominato “${tf.acquisitionStructure}” (di seguito, il "Cessionario")
+</p>
+
+<p>
+<table border="1">
+    <thead>
+    <tr>
+        <td>Debitore</td>
+        <td>Documento</td>
+        <td>Valore Nominale</td>
+        <td>Data incasso attesa</td>
+        <td>Importo in cessione</td>
+        <td>Prezzo iniziale</td>
+        <td>Prezzo differito atteso</td>
+    </tr>
+    </thead>
+    <tbody>
+    <#list inputs.assets as asset>
+    <tr>
+        <td>${asset.debtor}</td>
+        <td>${asset.document}</td>
+        <td>${asset.nominalValue}</td>
+        <td>${asset.collectionExpectedDate}</td>
+        <td>${asset.transferAmount}</td>
+        <td>${asset.upp}</td>
+        <td>${asset.expectedDpp}</td>
+    </tr>
+    </#list>
+    </tbody>
+</table>
+</p>
+
+<p>
+<table style="width: 100%;">
+    <thead>
+    <tr border="1">
+        <td>
+            Per accettazione:
+        </td>
+        <td>
+            Per accettazione:
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <b>${inputs.transferor.businessName}</b>
+        </td>
+        <td>
+            <b>${inputs.transferee.businessName}</b>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Nome:
+        </td>
+        <td>
+            Nome:
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Qualifica:
+        </td>
+        <td>
+            Qualifica:
+        </td>
+    </tr>
+    </tbody>
+</table>
+</p>
+
+</body>
+</html>

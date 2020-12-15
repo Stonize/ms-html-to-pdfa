@@ -36,6 +36,9 @@ public class HtmlToPdfResource {
   public HtmlToPdfResource(HtmlToPdfGenerator pdfGenerator) throws IOException {
     this.getDefaultArialFont().put("courier", IOUtils.toByteArray(getClass().getResourceAsStream("/fonts/courier.ttf")));
     this.getDefaultArialFont().put("arial", IOUtils.toByteArray(getClass().getResourceAsStream("/fonts/arial.ttf")));
+    this.getDefaultArialFont().put("Arial", IOUtils.toByteArray(getClass().getResourceAsStream("/fonts/arial.ttf")));
+    this.getDefaultArialFont().put("Georgia", IOUtils.toByteArray(getClass().getResourceAsStream("/fonts/Georgia.ttf")));
+    // this.getDefaultArialFont().put("glyphicons-halflings-regular", IOUtils.toByteArray(getClass().getResourceAsStream("/fonts/glyphicons-halflings-regular.ttf")));
     this.defaultColourProfile = IOUtils.toByteArray(getClass().getResourceAsStream("/colours/sRGB.icm"));
     this.pdfGenerator = pdfGenerator;
     if (System.getenv("TEMPLATES_DIR") != null) {
@@ -79,6 +82,8 @@ public class HtmlToPdfResource {
       LOGGER.info("successfully de-serialised input json");
 
       String template = TemplateEngine.getTemplate(this.templateRootDirectory, pdfInputItem.getHtmlDocument(), pdfInputItem.getInputs());
+
+      System.out.println(template);
 
       byte[] pdf =
               pdfGenerator.createPdfDocument(
